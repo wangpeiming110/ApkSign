@@ -1,0 +1,30 @@
+apply plugin: 'groovy'
+apply plugin: 'maven'
+apply plugin: 'com.zf.plugins.GitCommand'
+dependencies {
+    compile files('libs/apksigner.jar')
+    compile gradleApi()
+    compile localGroovy()
+}
+
+
+gitConfig {
+    versionCode 2
+    versionName "1.1.0"
+    changedLogFilePath file("config/log.txt").absolutePath
+    workDirPath project.projectDir.absolutePath
+}
+
+//设置maven deployer
+uploadArchives {
+    repositories {
+        mavenDeployer {
+            //设置插件的GAV参数
+            pom.groupId = 'com.zf.plugins'
+            pom.artifactId = 'ApkSign'
+            pom.version = '1.0.51'
+            //文件发布到下面目录
+            repository(url: uri('E:\\mvn-repo\\plugins\\repo'))
+        }
+    }
+}
