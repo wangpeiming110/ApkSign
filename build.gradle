@@ -26,8 +26,8 @@ dependencies {
 }
 
 gitConfig {
-    versionCode 2
-    versionName "1.1.0"
+    versionCode 1
+    versionName version
     changedLogFilePath file("config/log.txt").absolutePath
     workDirPath project.projectDir.absolutePath
 }
