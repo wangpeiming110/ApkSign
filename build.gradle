@@ -19,6 +19,10 @@ if (isSnapshot) {
 
 group 'com.zf.plugins'
 
+def gitUrl = "https://github.com/903600017/ApkSign.git"
+def siteUrl = gitUrl
+
+
 dependencies {
     compile files('libs/apksigner.jar')
     compile gradleApi()
@@ -32,11 +36,36 @@ gitConfig {
     workDirPath project.projectDir.absolutePath
 }
 
+
 publishing {
     publications {
         mavenJava(MavenPublication) {
             from components.java
             artifactId 'ApkSign'
+            pom {
+                name = "ApkSign"
+                description = "Apk signature plugin"
+                url = siteUrl
+                licenses {
+                    license {
+                        name = "The Apache License, Version 2.0"
+                        url = "https://github.com/903600017/ApkSign/blob/master/LICENSE"
+                    }
+                }
+
+                developers {
+                    developer {
+                        id = "zf"
+                        name = "zf"
+                        email = "1287253110@qq.com"
+                    }
+                }
+
+                organization {
+                    name ="zf"
+                    url= "https://github.com/903600017"
+                }
+            }
         }
     }
 
@@ -47,8 +76,6 @@ publishing {
     }
 }
 
-def gitUrl = "https://github.com/903600017/ApkSign"
-def siteUrl = gitConfig
 
 
 bintray {
@@ -60,7 +87,8 @@ bintray {
         name = 'ApkSign'
         userOrg = 'zf'
         licenses = ['Apache-2.0']
-        vcsUrl = 'https://github.com/bintray/gradle-bintray-plugin.git'
+        websiteUrl =siteUrl
+        vcsUrl = gitUrl
     }
 }
 
