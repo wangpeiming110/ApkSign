@@ -10,10 +10,17 @@ class SignApkInfo {
     String signJarFilePath
     String zipalignExeFilePath
     String buildToolsVersion
+    boolean isOpenOutputDir;
+    String signingName
     SigningInfo signingInfo
+
 
     SignApkInfo(String name) {
         this.name = name
+    }
+
+    void isOpenOutputDir(boolean isOpenOutputDir) {
+        this.isOpenOutputDir = isOpenOutputDir
     }
 
     void inputApkFilePath(String inputApkFilePath) {
@@ -22,6 +29,10 @@ class SignApkInfo {
 
     void outputApkDirPath(String outputApkDirPath) {
         this.outputApkDirPath = outputApkDirPath
+    }
+
+    void signingName(String signingName) {
+        this.signingName = signingName
     }
 
     void signJarFilePath(String signJarFilePath) {

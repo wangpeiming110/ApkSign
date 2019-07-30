@@ -6,6 +6,16 @@ public class SigningInfo {
     String keyAlias
     String keyPassword
 
+    SigningInfo() {
+    }
+
+    SigningInfo(String storeFilePath, String storePassword, String keyAlias, String keyPassword) {
+        this.storeFilePath = storeFilePath
+        this.storePassword = storePassword
+        this.keyAlias = keyAlias
+        this.keyPassword = keyPassword
+    }
+
     void storeFilePath(String storeFilePath) {
         this.storeFilePath = storeFilePath
     }

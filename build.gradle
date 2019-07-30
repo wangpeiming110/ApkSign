@@ -1,12 +1,29 @@
 apply plugin: 'groovy'
-apply plugin: 'maven'
+apply plugin: 'maven-publish'
 apply plugin: 'com.zf.plugins.GitCommand'
+apply plugin: 'com.jfrog.bintray'
+//apply plugin: 'com.novoda.bintray-release'
+
+def bintrayConfigFile = new File("D:\\Users\\Lenovo\\Desktop\\APP\\buildScript\\bintrayConfig.gradle")
+if (bintrayConfigFile.exists()) {
+    apply from: bintrayConfigFile.absolutePath
+}
+
+def isSnapshot = false
+
+version '1.0.1'
+
+if (isSnapshot) {
+    version(version + "-SNAPSHOT")
+}
+
+group 'com.zf.plugins'
+
 dependencies {
     compile files('libs/apksigner.jar')
     compile gradleApi()
     compile localGroovy()
 }
-
 
 gitConfig {
     versionCode 2
@@ -15,16 +32,49 @@ gitConfig {
     workDirPath project.projectDir.absolutePath
 }
 
-//设置maven deployer
-uploadArchives {
+publishing {
+    publications {
+        mavenJava(MavenPublication) {
+            from components.java
+            artifactId 'ApkSign'
+        }
+    }
+
     repositories {
-        mavenDeployer {
-            //设置插件的GAV参数
-            pom.groupId = 'com.zf.plugins'
-            pom.artifactId = 'ApkSign'
-            pom.version = '1.0.51'
-            //文件发布到下面目录
-            repository(url: uri('E:\\mvn-repo\\plugins\\repo'))
+        maven {
+            url = uri('E:\\mvn-repo\\plugins\\repo')
         }
     }
 }
+
+def gitUrl = "https://github.com/903600017/ApkSign"
+def siteUrl = gitConfig
+
+
+bintray {
+    user = BINTRAY_USER
+    key = BINTRAY_API_KEY
+    publications 'mavenJava'
+    pkg {
+        repo = 'maven'
+        name = 'ApkSign'
+        userOrg = 'zf'
+        licenses = ['Apache-2.0']
+        vcsUrl = 'https://github.com/bintray/gradle-bintray-plugin.git'
+    }
+}
+
+
+task dist(type: Zip) {
+
+    from 'src/dist'
+    into('libs') {
+        from 'build/classes'
+        from 'build/libs'
+    }
+}
+
+artifacts {
+    archives dist
+}
+

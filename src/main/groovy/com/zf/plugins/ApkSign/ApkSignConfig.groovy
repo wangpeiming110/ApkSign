@@ -9,11 +9,16 @@ class ApkSignConfig {
     String signJarFilePath
     String zipalignExeFilePath
     String buildToolsVersion
-    SigningInfo signingInfo = new SigningInfo()
+    String signingName
+    SigningInfo signingInfo
     NamedDomainObjectContainer<SignApkInfo> items
 
     ApkSignConfig(Project project) {
         items = project.container(SignApkInfo)
+    }
+
+    void signingName(String signingName) {
+        this.signingName = signingName
     }
 
     void signJarFilePath(String signJarFilePath) {
@@ -39,10 +44,16 @@ class ApkSignConfig {
 
 
     void signingInfo(Action<SigningInfo> action) {
+        if (signingInfo == null) {
+            signingInfo = new SigningInfo()
+        }
         action.execute(signingInfo);
     }
 
     void signingInfo(Closure c) {
+        if (signingInfo == null) {
+            signingInfo = new SigningInfo()
+        }
         org.gradle.util.ConfigureUtil.configure(c, signingInfo);
     }
 
