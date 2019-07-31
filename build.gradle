@@ -9,9 +9,9 @@ if (bintrayConfigFile.exists()) {
     apply from: bintrayConfigFile.absolutePath
 }
 
-def isSnapshot = false
+def isSnapshot = true
 
-version '1.0.1'
+version '1.0.2'
 
 if (isSnapshot) {
     version(version + "-SNAPSHOT")
@@ -30,10 +30,15 @@ dependencies {
 }
 
 gitConfig {
-    versionCode 1
+    versionCode 2
     versionName version
     changedLogFilePath file("config/log.txt").absolutePath
     workDirPath project.projectDir.absolutePath
+}
+
+task sourcesJar(type: Jar, dependsOn: classes) {
+    classifier = 'sources'
+    from sourceSets.main.allSource
 }
 
 
@@ -42,6 +47,10 @@ publishing {
         mavenJava(MavenPublication) {
             from components.java
             artifactId 'ApkSign'
+            artifact sourcesJar {
+                classifier "sources"
+            }
+
             pom {
                 name = "ApkSign"
                 description = "Apk signature plugin"
@@ -49,7 +58,7 @@ publishing {
                 licenses {
                     license {
                         name = "The Apache License, Version 2.0"
-                        url = "https://github.com/903600017/ApkSign/blob/master/LICENSE"
+                        url = "https://raw.githubusercontent.com/903600017/ApkSign/master/LICENSE"
                     }
                 }
 
@@ -62,8 +71,8 @@ publishing {
                 }
 
                 organization {
-                    name ="zf"
-                    url= "https://github.com/903600017"
+                    name = "zf"
+                    url = "https://github.com/903600017"
                 }
             }
         }
@@ -77,7 +86,6 @@ publishing {
 }
 
 
-
 bintray {
     user = BINTRAY_USER
     key = BINTRAY_API_KEY
@@ -87,7 +95,7 @@ bintray {
         name = 'ApkSign'
         userOrg = 'zf'
         licenses = ['Apache-2.0']
-        websiteUrl =siteUrl
+        websiteUrl = siteUrl
         vcsUrl = gitUrl
     }
 }
