@@ -10,7 +10,7 @@ class SignApkInfo {
     String signJarFilePath
     String zipalignExeFilePath
     String buildToolsVersion
-    boolean isOpenOutputDir;
+    Boolean isOpenOutputDir
     String signingName
     SigningInfo signingInfo
 

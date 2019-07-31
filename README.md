@@ -50,7 +50,11 @@ apkSignConfig {
 
 //统一配置 优先级低于自定义配置------------start-----------------------
 
-//可选，自定义签名jar包位置
+    //可选，默认为false。签名完成后，是否打签名后的apk所在目录，只支持windows
+     isOpenOutputDir true
+			
+
+    //可选，自定义签名jar包位置
 	signJarFilePath new File("E:\\Android\\sdk\\build-tools\\28.0.3\\lib\\apksigner.jar").absolutePath
 	
 	//可选，自定义apk包对齐命令位置
@@ -67,7 +71,7 @@ apkSignConfig {
         keyPassword "XXXXXX"
     }
 	
-	/可选，使用android项目里，名称为`debug`的签名配置
+	//可选，使用android项目里，名称为`debug`的签名配置
 	signingName 'debug'
 
 //统一配置-------------end----------------------
@@ -76,6 +80,9 @@ apkSignConfig {
         release {
 		
 		//release 自定义配置优先统一配置------------start-----------------------
+		
+			//可选，默认为统一配置里的值。签名完成后，是否打签名后的apk所在目录，只支持windows
+        	isOpenOutputDir true
 			
 			//可选，自定签名jar包，apk对齐命令所使用的版本，
 			buildToolsVersion '28.0.3'
@@ -94,15 +101,12 @@ apkSignConfig {
 				keyPassword "XXXXXX"
 			}
 			
-			/可选，使用android项目里，名称为`debug`的签名配置
+			//可选，使用android项目里，名称为`debug`的签名配置
 			signingName 'debug'
 			
-			//release 自定义配置优先统一配置------------end-----------------------
+	    //release 自定义配置优先统一配置------------end-----------------------
 			
-				//可选，默认为false。签名完成后，是否打签名后的apk所在目录，只支持windows
-			isOpenOutputDir true
-			
-				//必选，需要签名的APK 路径
+			//必选，需要签名的APK 路径
             inputApkFilePath file("build/outputs/apk/tap_unsign.apk").absolutePath
 			
 			//可选，指定签名apk文件的输出目录，默认为输入apk所在目录

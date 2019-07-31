@@ -214,6 +214,10 @@ public class ApkSignTask extends DefaultTask {
             throw new GradleException("The signature jar file does not exist.${signJarFile.absolutePath}")
         }
 
+        if (signApkInfo.isOpenOutputDir == null) {
+            signApkInfo.isOpenOutputDir = apkSignConfig.isOpenOutputDir
+        }
+
     }
 
 

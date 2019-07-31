@@ -11,6 +11,7 @@ class ApkSignConfig {
     String buildToolsVersion
     String signingName
     SigningInfo signingInfo
+    boolean isOpenOutputDir
     NamedDomainObjectContainer<SignApkInfo> items
 
     ApkSignConfig(Project project) {
@@ -27,6 +28,10 @@ class ApkSignConfig {
 
     void zipalignExeFilePath(String zipalignExeFilePath) {
         this.zipalignExeFilePath = zipalignExeFilePath
+    }
+
+    void isOpenOutputDir(boolean isOpenOutputDir) {
+        this.isOpenOutputDir = isOpenOutputDir
     }
 
 
