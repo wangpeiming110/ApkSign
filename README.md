@@ -118,9 +118,9 @@ apkSignConfig {
 
 **配置项具体解释：**
 
-* 当`signJarFilePath` ,`buildToolsVersion`都配置时,优化级为当 `signJarFilePath `> `buildToolsVersion`;当两个配置项都不配置时，默认使用 android项目里的 `buildToolsVersion`。
-*  `signJarFilePath` ,`buildToolsVersion`都配置时,优化级为当 `signJarFilePath` > `buildToolsVersion`;当两个配置项都不配置时，默认使用 android项目里的 `buildToolsVersion`。
-*  `signingInfo` ,`signingName`都配置时,优化级为当 `signingInfo` > `signingName`;当两个配置项都不配置时，默认使用 android项目里的默认debug签名。
+* 当`signJarFilePath` ,`buildToolsVersion`都配置时,优化级为 `signJarFilePath `> `buildToolsVersion`;当两个配置项都不配置时，默认使用 android项目里的 `buildToolsVersion`。
+*  `signJarFilePath` ,`buildToolsVersion`都配置时,优化级为 `signJarFilePath` > `buildToolsVersion`;当两个配置项都不配置时，默认使用 android项目里的 `buildToolsVersion`。
+*  `signingInfo` ,`signingName`都配置时,优化级为 `signingInfo` > `signingName`;当两个配置项都不配置时，默认使用 android项目里的默认debug签名。
 *  `signingName='release'` 签名信息配置的名称,
                   
 	```groovy
@@ -149,7 +149,6 @@ apkSignConfig {
 
 
 ## Q&A
-
 - [输出乱码](https://github.com/903600017/ApkSign/wiki/Terminal-%E8%BE%93%E5%87%BA%E4%B9%B1%E7%A0%81%EF%BC%9F)？
 
 ## 技术支持
