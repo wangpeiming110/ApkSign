@@ -9,12 +9,12 @@ if (bintrayConfigFile.exists()) {
     apply from: bintrayConfigFile.absolutePath
 }
 
-def isSnapshot = false
+def isSnapshot = true
 
 version '1.0.2'
 
 if (isSnapshot) {
-    version(version + "-SNAPSHOT")
+    version (version + "-SNAPSHOT")
 }
 
 group 'com.zf.plugins'
@@ -66,7 +66,7 @@ publishing {
                     developer {
                         id = "zf"
                         name = "zf"
-                        email = "1287253110@qq.com"
+                        email = "903600017@qq.com"
                     }
                 }
 

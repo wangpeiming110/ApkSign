@@ -146,6 +146,9 @@ apkSignConfig {
 	**生成apk签名包：**
 	
 	`./gradlew apkSign${你的签名配置名称(首页字母大小)}  `
+	
+	![签名配置名称](https://raw.githubusercontent.com/903600017/JiaGuLeGu/master/pic/sign_config_name.png)
+
 	 
 	 如上面的配置，生成签名包需要执行如下命令：
 	 

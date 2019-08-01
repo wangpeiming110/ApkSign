@@ -12,6 +12,7 @@ class ApkSignConfig {
     String signingName
     SigningInfo signingInfo
     boolean isOpenOutputDir
+
     NamedDomainObjectContainer<SignApkInfo> items
 
     ApkSignConfig(Project project) {
