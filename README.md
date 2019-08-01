@@ -19,7 +19,7 @@ ApkSign 为apk提供快速签名，解放双手，实现自动化流程。解决
 ```groovy
 buildscript {
     dependencies {
-        classpath 'com.zf.plugins:ApkSign:1.0.1'
+        classpath 'com.zf.plugins:ApkSign:1.0.2'
     }
 }
 ```
